@@ -5,36 +5,68 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity$PlaceholderFragment">
 
-    <TextView
-        android:id="@+id/id_label"
-        android:text="@string/id_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <TextView
-        android:id="@+id/content_label"
-        android:text="@string/content_label"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:layout_below="@+id/id_label"
-        android:layout_alignParentLeft="true" />
+        android:orientation="vertical"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true">
 
-    <TextView
-        android:id="@+id/id_value"
-        android:text="@string/id_value"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/id_label"
-        android:layout_marginLeft="50dp" />
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Ingrese su usuario:" />
 
-    <TextView
-        android:id="@+id/content_value"
-        android:text="@string/content_value"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/content_label"
-        android:layout_alignLeft="@+id/id_value" />
+        <EditText
+            android:id="@+id/txt_Usuario"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="(escriba su nombre)"
+            android:inputType="textPersonName"
+            android:text="Name" />
 
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Ingrese su contraseña" />
+
+        <EditText
+            android:id="@+id/txt_Contrasenia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="(ingrese contraseña)"
+            android:inputType="textPassword"
+            android:text="Name" />
+
+        <TextView
+            android:id="@+id/txt_Resultado"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/btn_Ingreso"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="IniciarSesion"
+            android:text="Iniciar sesión" />
+
+        <Button
+            android:id="@+id/button2"
+            style="@android:style/Widget.DeviceDefault.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Regístrate..."
+            android:textAppearance="@style/TextAppearance.AppCompat" />
+    </LinearLayout>
 </RelativeLayout>

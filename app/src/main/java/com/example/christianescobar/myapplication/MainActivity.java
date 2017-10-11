@@ -1,8 +1,10 @@
 package com.example.christianescobar.myapplication;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import com.android.volley.RequestQueue;
@@ -21,48 +23,40 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        final TextView TV=(TextView) findViewById(R.id.id_value);
-        TV.setText("Hola");
-        RequestQueue queue = Volley.newRequestQueue(this);
-        String url="http://"+V.SERVER+":"+V.PUERTO+"/Importadora/crear_Cuenta";
-        StringRequest putRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>(){
-            @Override
-            public void onResponse(String response) {
-                Json json=new Json(response);
-                //status, descripcion
-                if(!json.hasError()){
-                    String salida;
-                    int estado = (int) json.getField("status",V.INT);
-                    if(estado!=0){
-                        salida =(String)json.getField("descripcion",V.STRING);
-                    }else{
-                        salida = "Usuario creado";
-                    }
-                    TV.setText(salida);
-                }else{
-                    TV.setText("No se pudo parsear la respuesta: "+response);
-                }
-
-            }},new Response.ErrorListener(){
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                TV.setText("Error del conexión");
-            }
-        }) {
-            @Override
-            protected Map<String, String> getParams(){
-                Map<String, String> params = new HashMap<String, String>();
-                params.put("nombre", "Chriss");
-                params.put("username", "Chriss");
-                params.put("password", "A1234");
-                params.put("no_Tarjeta", "A1234");
-                return params;
-            }
-        };
-        queue.add(putRequest);
-
-        startActivity(new Intent(MainActivity.this, Cotizacion.class));
-
-
+        setTitle("Inicio de Sesión");
     }
+
+    public void IniciarSesion(View v)
+    {
+        setContentView(R.layout.activity_main);
+        final TextView usuario=(TextView) findViewById(R.id.txt_Usuario);
+        final TextView contrasenia=(TextView) findViewById(R.id.txt_Contrasenia);
+        final TextView resultado=(TextView) findViewById(R.id.txt_Resultado);
+
+        Comunicacion c = new Comunicacion();
+        Json json=c.sendRequest(Comunicacion.CREAR_CUENTA,this,new String[][]
+                {{"username", (String) usuario.getText()},
+                        {"password",(String)contrasenia.getText()}});
+        if(!json.hasError()){
+            Object o;
+            o=json.getField("status",V.STRING);
+            if(json.hasError()||o==null){
+                resultado.setText(json.getError());
+            }else{
+                String salida;
+                int estado = (int)o;
+                if(estado!=0){
+                    salida =(String)json.getField("descripcion",V.STRING);
+                    resultado.setTextColor(Color.RED);
+                }else{
+                    salida = "Usuario creado.";
+                    resultado.setTextColor(Color.GREEN);
+                }
+                usuario.setText(salida);
+            }
+        }else{
+            usuario.setText(json.getError());
+        }
+    }
+
 }
