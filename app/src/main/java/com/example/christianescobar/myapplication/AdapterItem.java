@@ -59,7 +59,7 @@ public class AdapterItem extends BaseAdapter{
             v = inf.inflate(R.layout.item_category, null);
         }
 
-        Vehiculo dir = items.get(position);
+        Vehiculo vehiculo = items.get(position);
 
         TextView id_Vehiculo = (TextView) v.findViewById(R.id.txtIdVehiculo);
         TextView marca = (TextView) v.findViewById(R.id.txtMarca);
@@ -76,6 +76,13 @@ public class AdapterItem extends BaseAdapter{
 
         ImageView imagen = (ImageView) v.findViewById(R.id.imageView);
         imagen.setImageDrawable(dir.getImage());*/
+
+        id_Vehiculo.setText(""+vehiculo.getId_Vehiculo());
+        marca.setText(vehiculo.getMarca());
+        linea.setText(vehiculo.getLinea());
+        modelo.setText(""+vehiculo.getModelo());
+        pais_Origen.setText(vehiculo.getPais_Origen());
+        precio_Vehiculo.setText(""+vehiculo.getPrecio_Vehiculo());
 
         return v;
     }
