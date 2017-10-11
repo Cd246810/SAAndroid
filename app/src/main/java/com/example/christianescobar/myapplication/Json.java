@@ -5,6 +5,7 @@ package com.example.christianescobar.myapplication;
  */
 
         import org.json.JSONArray;
+        import org.json.JSONException;
         import org.json.JSONObject;
 
 /**
@@ -20,11 +21,11 @@ public class Json {
 
     JSONObject data;
 
-    public Json(String jsonText) {
+    public Json(String jsonText) throws JSONException {
         data = new JSONObject(jsonText);
     }
 
-    public Object getField(String tag, int tipo) {
+    public Object getField(String tag, int tipo) throws JSONException {
         if (data == null) {
             return null;
         }
