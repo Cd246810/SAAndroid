@@ -8,4 +8,13 @@
     <string name="title_activity_cotizacion">Cotizacion</string>
     <string name="title_activity_listado_vehiculos">ListadoVehiculosActivity</string>
 
+    <string name="Cotizar_Nombre">Sin vehiculo</string>
+    <string name="Cotizar_precio_Vehiculo">Q0.00</string>
+    <string name="Cotizar_precio_Envio">Q0.00</string>
+    <string name="Cotizar_impuesto_Sat">Q0.00</string>
+    <string name="Cotizar_impuesto_Aduana">Q0.00</string>
+    <string name="Cotizar_taller">Q0.00</string>
+    <string name="Cotizar_iva">Q0.00</string>
+    <string name="Cotizar_isr">Q0.00</string>
+    <string name="Cotizar_error">Esto es un error</string>
 </resources>
