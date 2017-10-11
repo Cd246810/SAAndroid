@@ -23,18 +23,31 @@ public class MainActivity extends AppCompatActivity {
         final TextView TV=(TextView) findViewById(R.id.id_value);
         TV.setText("Hola");
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url="http://192.168.0.29:8093/Importadora/crear_Cuenta";
-        //
+        String url="http://"+V.SERVER+":"+V.PUERTO+"/Importadora/crear_Cuenta";
         StringRequest putRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>(){
             @Override
             public void onResponse(String response) {
-                TV.setText(response);
+                Json json=new Json(response);
+                //status, descripcion
+                if(!json.hasError()){
+                    String salida;
+                    int estado = (int) json.getField("status",V.INT);
+                    if(estado!=0){
+                        salida =(String)json.getField("descripcion",V.STRING);
+                    }else{
+                        salida = "Usuario creado";
+                    }
+                    TV.setText(salida);
+                }else{
+                    TV.setText("No se pudo parsear la respuesta: "+response);
+                }
+
             }},new Response.ErrorListener(){
             @Override
             public void onErrorResponse(VolleyError error) {
-                TV.setText("Error");
+                TV.setText("Error del conexión");
             }
-            }) {
+        }) {
             @Override
             protected Map<String, String> getParams(){
                 Map<String, String> params = new HashMap<String, String>();
@@ -46,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         queue.add(putRequest);
+
 
 
     }
