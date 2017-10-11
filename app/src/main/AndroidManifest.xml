@@ -21,6 +21,10 @@
         <activity
             android:name=".Cotizacion"
             android:label="@string/title_activity_cotizacion"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ListadoVehiculosActivity"
+            android:label="@string/title_activity_listado_vehiculos"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
