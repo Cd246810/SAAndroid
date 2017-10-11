@@ -28,13 +28,13 @@
         android:text="modelo" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/txtPaisOrigen"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="pais_Origen" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/txtPrecioVehiculo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="precio_Vehiculo" />
