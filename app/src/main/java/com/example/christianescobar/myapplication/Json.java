@@ -22,18 +22,18 @@ public class Json {
         try{
             data = new JSONObject(jsonText);
         }catch(JSONException ex){
-            txt_error = "No se pudo crear el objeto JSON";
+            txt_error = "No se pudo crear el objeto JSON con el texto: "+jsonText;
             error=true;
             data = null;
         }
     }
 
-    public Object getField(String tag, int tipo) {
+    public Object getField(String tag, byte tipo) {
         if (data == null) {
             error=true;
             return null;
         }
-        Object o;
+        Object o=null;
         try{
             o= data.get(tag);
         }catch(JSONException ex){
@@ -41,19 +41,24 @@ public class Json {
             error=true;
             return null;
         }
-        switch (tipo) {
-            case V.INT:
-                o = (int) o;
-                break;
-            case V.DOUBLE:
-                o = (double) o;
-                break;
-            case V.STRING:
-                o = (String) o;
-                break;
-            case V.DATE:
-                o = (java.util.Date) o;
-                break;
+        try {
+            switch (tipo) {
+                case V.INT:
+                    o = (int) o;
+                    break;
+                case V.DOUBLE:
+                    o = (double) o;
+                    break;
+                case V.STRING:
+                    o = (String) o;
+                    break;
+                case V.DATE:
+                    o = (java.util.Date) o;
+                    break;
+            }
+        }catch(ClassCastException ex){
+            error=true;
+            txt_error="No se pudo convertir el dato a "+V.TIPOS[tipo];
         }
         return o;
     }
