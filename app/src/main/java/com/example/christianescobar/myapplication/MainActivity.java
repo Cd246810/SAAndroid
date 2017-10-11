@@ -23,6 +23,11 @@ public class MainActivity extends AppCompatActivity {
     private TextView usuario;
     private TextView contrasenia;
 
+    private boolean stateRegistro=false;
+
+    public static final String CREAR_CUENTA = "crear_Cuenta";
+    public static final String INICIAR_SESION = "validar_Sesion";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,42 +40,67 @@ public class MainActivity extends AppCompatActivity {
 
     public void IniciarSesion(View v)
     {
-        Comunicacion c = new Comunicacion();
+        resultado.setText("");
+        resultado.setTextColor(Color.RED);
         String txt_usuario= usuario.getText().toString();
         String txt_contrasenia=contrasenia.getText().toString();
         String[][] parametros=new String[][]
                 {{"username",txt_usuario},
                 {"password",txt_contrasenia}};
-        Json json=c.sendRequest(Comunicacion.INICIAR_SESION,this,parametros);
-        if(c.hasError()){
-            resultado.setText(c.getError());
-        }else if(json==null) {
-            resultado.setText("El resultado es nulo");
-        }else if(!json.hasError()){
-            Object o;
-            o=json.getField("status",V.STRING);
-            if(json.hasError()||o==null){
-                resultado.setText(json.getError());
-            }else{
-                String salida;
-                int estado = (int)o;
-                if(estado!=0){
-                    salida =(String)json.getField("descripcion",V.STRING);
-                    resultado.setTextColor(Color.RED);
-                }else{
-                    salida = "Usuario creado.";
-                    resultado.setTextColor(Color.GREEN);
-                }
-                usuario.setText(salida);
-            }
-        }else{
-            usuario.setText(json.getError());
-        }
+        sendRequest(INICIAR_SESION,parametros);
     }
+
 
     public void enviarAListado(View v){
-        startActivity(new Intent(MainActivity.this, ListadoVehiculosActivity.class));
+        startActivity(new Intent(MainActivity.this, Cotizacion.class));
     }
 
+    public void sendRequest(String metodo, final String[][] parametros){
+        RequestQueue queue = Volley.newRequestQueue(this);
+        if (parametros != null && parametros.length != 0 && parametros[0].length == 2) {
+            String url = "http://" + V.SERVER + ":" + V.PUERTO + "/Importadora/" + metodo;
+            StringRequest putRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    Json json = new Json(response);
+                    if (json.hasError()) {
+                        resultado.setText(json.getError());
+                    } else {
+                        Object o;
+                        o = json.getField("status", V.INT);
+                        if (json.hasError() || o == null) {
+                            resultado.setText(json.getError());
+                        } else {
+                            int estado = (int) o;
+                            if (estado != 0) {
+                                resultado.setText((String) json.getField("descripcion", V.STRING));
+                            } else {
+                                resultado.setText("Usuario ingresado.");
+                                resultado.setTextColor(Color.BLUE);
+                                startActivity(new Intent(MainActivity.this, ListadoVehiculosActivity.class));
+                            }
+                        }
+                    }
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    resultado.setText("Error de conexión a " + V.SERVER);
+                }
+            }) {
+                @Override
+                protected Map<String, String> getParams() {
+                    Map<String, String> params = new HashMap<String, String>();
+                    for (String[] parametro : parametros) {
+                        params.put(parametro[0], parametro[1]);
+                    }
+                    return params;
+                }
+            };
+            queue.add(putRequest);
+        }else{
+            resultado.setText("Los parmámetros no están bien definidos");
+        }
+    }
 }
 
