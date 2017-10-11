@@ -23,7 +23,10 @@ public class Comunicacion{
     private boolean error;
     private String txt_error;
 
+    private boolean esperar=true;
+
     public static final String CREAR_CUENTA = "crear_Cuenta";
+    public static final String INICIAR_SESION = "validar_Sesion";
 
     public Comunicacion(){
         respuesta=null;
@@ -43,20 +46,26 @@ public class Comunicacion{
      */
     public Json sendRequest(String metodo, Context contexto, final String[][] parametros){
         RequestQueue queue = Volley.newRequestQueue(contexto);
-        if(contexto==null){
-            error=true;
-            txt_error="El contexto es nulo";
-        }else if(parametros!=null && parametros.length!=0 && parametros[0].length==2) {
-            String url = "http://" + V.SERVER + ":" + V.PUERTO + "/Importadora/";
+        if (contexto == null) {
+            error = true;
+            txt_error = "El contexto es nulo";
+            return null;
+        } else if (parametros != null && parametros.length != 0 && parametros[0].length == 2) {
+            String url = "http://" + V.SERVER + ":" + V.PUERTO + "/Importadora/" + metodo;
             StringRequest putRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
                     respuesta = new Json(response);
+                    if(respuesta.hasError()){
+                        error=true;
+                        txt_error=respuesta.getError();
+                    }
+                    esperar=false;
                 }
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    Comunicacion.this.error=true;
+                    Comunicacion.this.error = true;
                     txt_error = "Error de conexión a " + V.SERVER;
                 }
             }) {
@@ -71,16 +80,24 @@ public class Comunicacion{
             };
             queue.add(putRequest);
             try {
-                queue.wait();
-            } catch (InterruptedException e) {
-                error=true;
-                txt_error="Error esperando que termine la solicitud a Importadora";
+                //queue.wait();
+                while(esperar)Thread.sleep(300);
+            } catch (Exception e) {
+                error = true;
+                txt_error = "Error esperando que termine la solicitud a Importadora";
             }
-        }else{
-            error=true;
-            txt_error="El formato de los parámetros es incorrecto. Debe de tener una lista de de parametros en parejas";
+        } else {
+            error = true;
+            txt_error = "El formato de los parámetros es incorrecto. Debe de tener una lista de de parametros en parejas";
         }
         return respuesta;
+    }
+
+    public boolean hasError(){
+        return error;
+    }
+    public String getError(){
+        return txt_error;
     }
 
 }

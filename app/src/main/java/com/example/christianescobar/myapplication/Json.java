@@ -1,12 +1,10 @@
 package com.example.christianescobar.myapplication;
 
-/**
- * Created by christianescobar on 11/10/17.
- */
+//import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-        //import org.json.JSONArray;
-        import org.json.JSONException;
-        import org.json.JSONObject;
+import java.util.concurrent.ExecutionException;
 
 /**
  *
@@ -21,7 +19,7 @@ public class Json {
     public Json(String jsonText) {
         try{
             data = new JSONObject(jsonText);
-        }catch(JSONException ex){
+        }catch(Exception ex){
             txt_error = "No se pudo crear el objeto JSON con el texto: "+jsonText;
             error=true;
             data = null;
