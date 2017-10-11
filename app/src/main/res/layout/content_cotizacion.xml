@@ -8,4 +8,152 @@
     tools:context="com.example.christianescobar.myapplication.Cotizacion"
     tools:showIn="@layout/activity_cotizacion">
 
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="368dp"
+        android:layout_height="495dp"
+        tools:context=".MainActivity$PlaceholderFragment"
+        tools:layout_editor_absoluteY="8dp"
+        tools:layout_editor_absoluteX="8dp">
+
+        <TextView
+            android:id="@+id/precio_Vehiculo"
+            android:text="Precio de vehiculo "
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+        <TextView
+            android:id="@+id/precio_Envio"
+            android:text="Precio de Envio: "
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_below="@+id/precio_Vehiculo"
+            android:layout_alignParentLeft="true" />
+
+        <TextView
+            android:id="@+id/impuesto_Sat"
+            android:text="Impuesto de Sat: "
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_below="@+id/precio_Envio"
+            android:layout_alignParentLeft="true" />
+
+        <TextView
+            android:id="@+id/impuesto_Aduana"
+            android:text="Impuesto de Aduana: "
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_below="@+id/impuesto_Sat"
+            android:layout_alignParentLeft="true" />
+
+        <TextView
+            android:id="@+id/taller"
+            android:text="Precio de taller: "
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_below="@+id/impuesto_Aduana"
+            android:layout_alignParentLeft="true" />
+
+        <TextView
+            android:id="@+id/iva"
+            android:text="Precio de iva: "
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_below="@+id/taller"
+            android:layout_alignParentLeft="true" />
+
+        <TextView
+            android:id="@+id/isr"
+            android:text="Precio de isr: "
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_below="@+id/iva"
+            android:layout_alignParentLeft="true" />
+
+        <TextView
+            android:id="@+id/content_precio_Vehiculo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="75dp"
+            android:layout_toRightOf="@+id/precio_Vehiculo"
+            android:text="@string/Cotizar_Nombre" />
+
+        <TextView
+            android:id="@+id/content_precio_Envio"
+            android:text="@string/Cotizar_precio_Vehiculo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/precio_Envio"
+            android:layout_alignLeft="@+id/content_precio_Vehiculo" />
+
+        <TextView
+            android:id="@+id/content_precio_sat"
+            android:text="@string/Cotizar_impuesto_Sat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/impuesto_Sat"
+            android:layout_alignLeft="@+id/content_precio_Vehiculo" />
+
+        <TextView
+            android:id="@+id/content_impuesto_Aduana"
+            android:text="@string/Cotizar_impuesto_Aduana"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/impuesto_Aduana"
+            android:layout_alignLeft="@+id/content_precio_Vehiculo" />
+
+        <TextView
+            android:id="@+id/content_taller"
+            android:text="@string/Cotizar_taller"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/taller"
+            android:layout_alignLeft="@+id/content_precio_Vehiculo" />
+
+        <TextView
+            android:id="@+id/content_iva"
+            android:text="@string/Cotizar_iva"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/iva"
+            android:layout_alignLeft="@+id/content_precio_Vehiculo" />
+
+        <TextView
+            android:id="@+id/content_isr"
+            android:text="@string/Cotizar_isr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/isr"
+            android:layout_alignLeft="@+id/content_precio_Vehiculo" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button"
+            android:layout_marginTop="66dp"
+            android:layout_below="@+id/content_isr"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:id="@+id/error"
+            android:text="@string/Cotizar_error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_below="@+id/button"
+            android:layout_centerHorizontal="true" />
+
+    </RelativeLayout>
+
+
 </android.support.constraint.ConstraintLayout>
