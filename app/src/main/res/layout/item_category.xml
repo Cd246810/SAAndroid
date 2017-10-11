@@ -3,4 +3,45 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/txtIdVehiculo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="id_Vehiculo" />
+
+    <TextView
+        android:id="@+id/txtMarca"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="marca" />
+
+    <TextView
+        android:id="@+id/txtLinea"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="linea" />
+
+    <TextView
+        android:id="@+id/txtModelo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="modelo" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="pais_Origen" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="precio_Vehiculo" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cotizar" />
 </LinearLayout>
