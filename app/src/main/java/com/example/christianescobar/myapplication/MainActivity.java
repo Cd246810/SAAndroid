@@ -1,5 +1,6 @@
 package com.example.christianescobar.myapplication;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
@@ -60,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
         };
         queue.add(putRequest);
 
+        startActivity(new Intent(MainActivity.this, Cotizacion.class));
 
 
     }
