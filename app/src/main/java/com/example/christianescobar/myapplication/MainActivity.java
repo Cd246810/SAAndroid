@@ -68,10 +68,14 @@ public class MainActivity extends AppCompatActivity {
         resultado.setTextColor(Color.RED);
         String txt_usuario= usuario.getText().toString();
         String txt_contrasenia=contrasenia.getText().toString();
-        String[][] parametros=new String[][]
-                {{"username",txt_usuario},
-                {"password",txt_contrasenia}};
-        sendRequest(INICIAR_SESION,parametros);
+        if(txt_usuario.isEmpty()||txt_contrasenia.isEmpty()){
+            resultado.setText("Debe llenar ambos campos");
+        }else{
+            String[][] parametros=new String[][]
+                    {{"username",txt_usuario},
+                    {"password",txt_contrasenia}};
+            sendRequest(INICIAR_SESION,parametros);
+        }
     }
 
 
@@ -80,17 +84,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void registrar(View v){
+        resultado.setText("");
+        resultado.setTextColor(Color.RED);
         String txt_usuario= usuario.getText().toString();
         String txt_contrasenia=contrasenia.getText().toString();
         String txt_nombre=nombre.getText().toString();
         String txt_tarjeta=tarjeta.getText().toString();
-        String[][] parametros=new String[][]{
-                {"nombre",txt_nombre},
-                {"username",txt_usuario},
-                {"password",txt_contrasenia},
-                {"no_Tarjeta",txt_tarjeta}
-        };
-        sendRequest(CREAR_CUENTA,parametros);
+        if(txt_usuario.isEmpty()||txt_contrasenia.isEmpty()||txt_nombre.isEmpty()||txt_tarjeta.isEmpty()){
+            resultado.setText("Debe llenar ambos campos");
+        }else {
+            String[][] parametros = new String[][]{
+                    {"nombre", txt_nombre},
+                    {"username", txt_usuario},
+                    {"password", txt_contrasenia},
+                    {"no_Tarjeta", txt_tarjeta}
+            };
+            sendRequest(CREAR_CUENTA, parametros);
+        }
     }
 
     public void cambiarVista(View v){
@@ -135,6 +145,7 @@ public class MainActivity extends AppCompatActivity {
                                 if(tipo.equals(INICIAR_SESION)) {
                                     resultado.setText("Usuario ingresado.");
                                     resultado.setTextColor(Color.BLUE);
+                                    V.usuario=usuario.getText().toString();
                                     V.nombre = (String) json.getField("nombre", V.STRING);
                                     V.noTarjeta = (String) json.getField("no_Tarjeta", V.STRING);
                                 }
@@ -142,8 +153,9 @@ public class MainActivity extends AppCompatActivity {
                                 else{
                                     resultado.setText("Usuario Creado");
                                     resultado.setTextColor(Color.BLUE);
-                                    String txt_nombre=nombre.getText().toString();
-                                    String txt_tarjeta=tarjeta.getText().toString();
+                                    V.nombre=nombre.getText().toString();
+                                    V.noTarjeta=tarjeta.getText().toString();
+                                    V.usuario = usuario.getText().toString();
                                 }
                                 startActivity(new Intent(MainActivity.this, ListadoVehiculosActivity.class));
                             }
