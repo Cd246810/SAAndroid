@@ -135,13 +135,15 @@ public class MainActivity extends AppCompatActivity {
                                 if(tipo.equals(INICIAR_SESION)) {
                                     resultado.setText("Usuario ingresado.");
                                     resultado.setTextColor(Color.BLUE);
-                                    V.usuario = (String) json.getField("nombre", V.STRING);
+                                    V.nombre = (String) json.getField("nombre", V.STRING);
                                     V.noTarjeta = (String) json.getField("no_Tarjeta", V.STRING);
                                 }
                                 //REGISTRO DE USUARIO
                                 else{
                                     resultado.setText("Usuario Creado");
                                     resultado.setTextColor(Color.BLUE);
+                                    String txt_nombre=nombre.getText().toString();
+                                    String txt_tarjeta=tarjeta.getText().toString();
                                 }
                                 startActivity(new Intent(MainActivity.this, ListadoVehiculosActivity.class));
                             }

@@ -18,6 +18,7 @@ public abstract class V {
     public static String pais;
 
     public static String usuario;
+    public static String nombre;
     public static String noTarjeta;
 
 }
