@@ -2,10 +2,12 @@ package com.example.christianescobar.myapplication;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -59,9 +61,9 @@ public class AdapterItem extends BaseAdapter{
             v = inf.inflate(R.layout.item_category, null);
         }
 
-        Vehiculo vehiculo = items.get(position);
+        final Vehiculo vehiculo = items.get(position);
 
-        TextView id_Vehiculo = (TextView) v.findViewById(R.id.txtIdVehiculo);
+        final TextView id_Vehiculo = (TextView) v.findViewById(R.id.txtIdVehiculo);
         TextView marca = (TextView) v.findViewById(R.id.txtMarca);
         TextView linea = (TextView) v.findViewById(R.id.txtLinea);
         TextView modelo = (TextView) v.findViewById(R.id.txtModelo);
@@ -83,6 +85,15 @@ public class AdapterItem extends BaseAdapter{
         modelo.setText(""+vehiculo.getModelo());
         pais_Origen.setText(vehiculo.getPais_Origen());
         precio_Vehiculo.setText(""+vehiculo.getPrecio_Vehiculo());
+
+        Button btn = (Button)v.findViewById(R.id.btn_Cotizar);
+
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                System.out.println("BTN: " + vehiculo.getId_Vehiculo());
+            }
+        });
 
         return v;
     }

@@ -6,6 +6,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,6 +25,8 @@ import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import static android.R.id.list;
 
 public class ListadoVehiculosActivity extends AppCompatActivity {
 
@@ -73,9 +76,20 @@ public class ListadoVehiculosActivity extends AppCompatActivity {
 
 
                         }
+
                         AdapterItem adapter = new AdapterItem(ListadoVehiculosActivity.this, vehiculos);
 
                         lv.setAdapter(adapter);
+
+                        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                final int pos = position;
+                                System.out.println("CLIC EN ITEM");
+
+                            }
+                        });
+
                     }
                     else{
                         String descripcion = reader.getString("descripcion");
@@ -104,6 +118,7 @@ public class ListadoVehiculosActivity extends AppCompatActivity {
             }
         };
         queue.add(putRequest);
+
     }
 
 }
