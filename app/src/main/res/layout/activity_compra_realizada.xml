@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.christianescobar.myapplication.CompraRealizada">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="368dp"
+        android:layout_height="495dp"
+        tools:context=".MainActivity$PlaceholderFragment"
+        tools:layout_editor_absoluteY="8dp"
+        tools:layout_editor_absoluteX="8dp">
+
+
+    <TextView
+        android:id="@+id/serie"
+        android:text="Numero de serie: "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+
+    <TextView
+        android:id="@+id/numero_Factura"
+        android:text="Numero de factua: "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_below="@+id/serie"
+        android:layout_alignParentLeft="true" />
+
+        <TextView
+            android:id="@+id/content_serie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="75dp"
+            android:layout_toRightOf="@+id/serie"
+            android:text="@string/Cotizar_Nombre" />
+    <TextView
+        android:id="@+id/content_numero_Factura"
+        android:text="@string/Cotizar_isr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/numero_Factura"
+        android:layout_alignLeft="@+id/content_serie" />
+
+        <TextView
+            android:id="@+id/error"
+            android:text="@string/Cotizar_error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_below="@+id/numero_Factura"
+            android:layout_centerHorizontal="true" />
+    </RelativeLayout>
+
+
+</android.support.constraint.ConstraintLayout>

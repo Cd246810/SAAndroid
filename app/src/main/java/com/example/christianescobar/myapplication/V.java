@@ -20,4 +20,6 @@ public abstract class V {
     public static String usuario;
     public static String noTarjeta;
 
+    public static Double precio_Vehiculo,precio_Envio,impuesto_Sat,impuesto_Aduana,taller,iva,isr;
+
 }
