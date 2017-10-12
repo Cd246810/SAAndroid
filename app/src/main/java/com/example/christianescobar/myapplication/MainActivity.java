@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
         String txt_nombre=nombre.getText().toString();
         String txt_tarjeta=tarjeta.getText().toString();
         if(txt_usuario.isEmpty()||txt_contrasenia.isEmpty()||txt_nombre.isEmpty()||txt_tarjeta.isEmpty()){
-            resultado.setText("Debe llenar ambos campos");
+            resultado.setText("Debe llenar todos los campos");
         }else {
             String[][] parametros = new String[][]{
                     {"nombre", txt_nombre},
