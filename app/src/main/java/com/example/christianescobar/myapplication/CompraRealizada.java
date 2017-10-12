@@ -54,8 +54,8 @@ public class CompraRealizada extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams(){
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("username", "Chriss");
-                params.put("no_Tarjeta","A12");
+                params.put("username", V.usuario);
+                params.put("no_Tarjeta",V.noTarjeta);
                 params.put("id_Vehiculo", ""+V.idVehiculo);
                 params.put("precio_Envio", ""+V.precio_Envio);
                 params.put("impuesto_Sat", ""+V.impuesto_Sat);

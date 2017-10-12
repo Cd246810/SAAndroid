@@ -102,7 +102,7 @@ public class Cotizacion extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams(){
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("id_Vehiculo", "11");
+                params.put("id_Vehiculo", ""+V.idVehiculo);
                 params.put("pais_Destino", "Guatemala");
                 return params;
             }
