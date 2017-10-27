@@ -25,11 +25,16 @@ import static org.junit.Assert.*;
 public class ExampleUnitTest {
     @Test
     public void addition_isCorrect() throws Exception {
-        assertEquals(4, 4 + 2);
+        assertEquals(4, 2 + 2);
     }
     @Test
     public void Json() throws Exception {
-        Json json=new Json("");
-        assertEquals(4, 4 + 2);
+        Json json=new Json("{\n" +
+                "\"nombre\" : \"\",\n" +
+                "\"no_Tarjeta\" : \"\",\n" +
+                "\"status\" : 1,\n" +
+                "\"descripcion\" : \"Usuario o contraseña incorrectos.\"\n" +
+                "}\n");
+        assertEquals(4, 2 + 2);
     }
 }
