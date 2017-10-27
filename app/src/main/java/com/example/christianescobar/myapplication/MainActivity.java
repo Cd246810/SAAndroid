@@ -147,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
                                     resultado.setTextColor(Color.BLUE);
                                     V.usuario=usuario.getText().toString();
                                     V.nombre = (String) json.getField("nombre", V.STRING);
-                                    V.noTarjeta = (String) json.getField("no_tarjeta", V.STRING);
+                                    V.noTarjeta = (String) json.getField("no_Tarjeta", V.STRING);
                                 }
                                 //REGISTRO DE USUARIO
                                 else{
