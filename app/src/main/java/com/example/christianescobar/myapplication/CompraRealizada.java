@@ -1,8 +1,13 @@
 package com.example.christianescobar.myapplication;
 
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -10,11 +15,25 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 public class CompraRealizada extends AppCompatActivity {
+
+
+    String numSerie="";
+    String numFactura="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,10 +55,80 @@ public class CompraRealizada extends AppCompatActivity {
                         TextError.setText((String)json.getField("descripcion",V.STRING));
                     }else{
                         TextView serie = (TextView)findViewById(R.id.content_serie);
-                        serie.setText((String) json.getField("serie", V.STRING));
+                        numSerie = (String) json.getField("serie", V.STRING);
+                        serie.setText(numSerie);
                         TextView numero_Factura = (TextView)findViewById(R.id.content_numero_Factura);
-                        numero_Factura.setText((String) json.getField("numero_Factura", V.STRING));
+                        numFactura = (String) json.getField("numero_Factura", V.STRING);
+                        numero_Factura.setText(numFactura);
                         TextError.setText("Se compro el vehiculo");
+
+
+                        try {
+
+                            Date date = new Date() ;
+                            String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(date);
+                            File directory = new File(Environment.getExternalStorageDirectory()+File.separator+"pdfSA");
+
+                            if (!directory.exists()) {
+                                directory.mkdir();
+                            }
+
+                            directory.mkdirs();
+                    /*
+                    TextView TextError = (TextView)findViewById(R.id.error);
+                    TextError.setText(""+directory.getAbsolutePath());
+                    */
+                            //Create time stamp
+
+
+                            File myFile = new File(directory+"/" + timeStamp + ".pdf");
+
+                            OutputStream output = new FileOutputStream(myFile);
+
+                            //Step 1
+                            Document document = new Document();
+
+                            //Step 2
+                            PdfWriter.getInstance(document, output);
+
+                            //Step 3
+                            document.open();
+
+                            //Step 4 Add content
+                            //document.add(new Paragraph("Puede funcionar"));
+                            //document.add(new Paragraph("No, no puede?"));
+                            document.add(new Paragraph("Numero de serie: "+numSerie));
+                            document.add(new Paragraph("Numero de factura: "+numFactura));
+                            document.add(new Paragraph("Costo del vehículo: "+V.precio_Vehiculo+"\n"
+                                    +"Costo de envío: "+V.precio_Envio+"\n"
+                                    +"Impuesto SAT: "+V.impuesto_Sat+"\n" +
+                                    ""+"Impuesto Aduana: "+V.impuesto_Aduana+"\n"
+                                    +"Costo del taller: "+V.taller+"\n"
+                                    +"Costo del IVA: "+V.iva+"\n"
+                                    +"Costo del ISR: "+V.isr));
+
+                            //Step 5: Close the document
+                            document.close();
+                            Uri path = Uri.fromFile(myFile);
+                            Intent pdfIntent = new Intent(Intent.ACTION_VIEW);
+                            pdfIntent.setDataAndType(path, "application/pdf");
+                            pdfIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+                            try {
+                                startActivity(pdfIntent);
+                            } catch (ActivityNotFoundException e) {
+                                TextError = (TextView)findViewById(R.id.error);
+                                TextError.setText("Can't read pdf file");
+                                Toast.makeText(CompraRealizada.this, "Can't read pdf file", Toast.LENGTH_SHORT).show();
+                            }
+
+                        }catch (DocumentException e) {
+                            TextError = (TextView)findViewById(R.id.error);
+                            TextError.setText(e.toString()+"Es aqui");
+                        }catch (IOException e) {
+                            TextError = (TextView)findViewById(R.id.error);
+                            TextError.setText(e.toString());
+                        }
                     }
                 }else{
                     TextError.setText("No se pudo parsear la respuesta: "+response);
@@ -67,5 +156,8 @@ public class CompraRealizada extends AppCompatActivity {
             }
         };
         queue2.add(putRequest2);
+
+
+
     }
 }

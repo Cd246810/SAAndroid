@@ -6,47 +6,30 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class CambiarIP extends AppCompatActivity {
 
-
-    EditText IP=(EditText) findViewById(R.id.txt_IP);
+    EditText IP;
+    EditText Puerto;
+    TextView Error;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cambiar_ip);
         setTitle("Cambiar IP");
-
+        IP=(EditText) findViewById(R.id.txt_IP);
+        Puerto=(EditText) findViewById(R.id.txt_Puerto);
+        Error =(TextView) findViewById(R.id.txtError);
     }
 
     public void cambiarIP(View v){
 
         String ip=IP.getText().toString().trim();
-        String ipA[]=ip.split(".");
-        boolean error=false;
-        if(ipA.length!=4){
-            error=true;
-        }else{
-            for(String i:ipA){
-                try{
-                    int num=Integer.parseInt(i);
-                    if(num<0 || num>255){
-                        error=true;
-                        break;
-                    }
-                }catch(Exception ex){
-                    error=true;
-                    break;
-                }
-            }
-        }
-        if(error){
-            IP.setTextColor(Color.RED);
-        }else{
-            IP.setTextColor(Color.BLUE);
-            V.SERVER = ip;
-            startActivity(new Intent(CambiarIP.this, MainActivity.class));
-        }
+        String puerto = Puerto.getText().toString().trim();
+        V.SERVER = ip;
+        V.PUERTO= puerto;
+        startActivity(new Intent(CambiarIP.this, MainActivity.class));
     }
 }

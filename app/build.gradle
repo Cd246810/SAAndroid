@@ -1,6 +1,6 @@
 apply plugin: 'com.android.application'
 
-tasks.matching {it instanceof Test}.all {
+tasks.matching { it instanceof Test }.all {
     testLogging.events = ["failed", "passed", "skipped"]
 }
 
