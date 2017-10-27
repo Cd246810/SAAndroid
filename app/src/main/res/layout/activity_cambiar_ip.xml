@@ -3,48 +3,32 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context="com.example.christianescobar.myapplication.CambiarIP">
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true">
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Ingrese su usuario:" />
+            android:text="Ingrese la IP del ESB:" />
 
         <EditText
-            android:id="@+id/txt_Usuario"
+            android:id="@+id/txt_IP"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
             android:hint="(escriba su nombre)"
             android:inputType="textPersonName"
-            android:text="Chriss" />
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Ingrese su contraseña:" />
-
-        <EditText
-            android:id="@+id/txt_Contrasenia"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:hint="(ingrese contraseña)"
-            android:inputType="textPassword"
-            android:text="A1234" />
+            android:text="192.168.0." />
 
         <TextView
             android:id="@+id/txt_askNombre"
@@ -84,30 +68,6 @@
             android:text="18273475"
             android:visibility="gone" />
 
-        <TextView
-            android:id="@+id/txt_Resultado"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-
-        <Button
-            android:id="@+id/btn_Ingreso"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="IniciarSesion"
-            android:text="Iniciar sesión" />
-
-        <Button
-            android:id="@+id/lnk_Registro"
-            style="@android:style/Widget.DeviceDefault.Button.Borderless"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="cambiarVista"
-            android:text="Regístrate..."
-            android:textAppearance="@style/TextAppearance.AppCompat" />
-
         <Button
             android:id="@+id/button2"
             android:layout_width="match_parent"
@@ -137,14 +97,4 @@
             android:visibility="gone" />
 
     </LinearLayout>
-
-    <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:onClick="cambiarIP"
-        app:srcCompat="@android:drawable/ic_menu_mylocation" />
 </RelativeLayout>

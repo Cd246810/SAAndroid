@@ -79,8 +79,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void enviarAListado(View v){
+    public void enviarAPDF(View v){
         startActivity(new Intent(MainActivity.this, Cotizacion.class));
+    }
+
+    public void cambiarIP(View v){
+        startActivity(new Intent(MainActivity.this, CambiarIP.class));
     }
 
     public void registrar(View v){
