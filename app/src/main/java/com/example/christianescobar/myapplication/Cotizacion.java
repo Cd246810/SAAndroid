@@ -127,6 +127,7 @@ public class Cotizacion extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         TextView TextError = (TextView)findViewById(R.id.error);
+                        TextError.setText("Todo bien en la respuesta por ahora}");
                         //TextError.setText(response);
                         Json json=new Json(response);
                         //status, descripcion

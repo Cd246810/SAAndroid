@@ -9,6 +9,9 @@ import android.widget.EditText;
 
 public class CambiarIP extends AppCompatActivity {
 
+
+    EditText IP=(EditText) findViewById(R.id.txt_IP);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,7 +22,6 @@ public class CambiarIP extends AppCompatActivity {
 
     public void cambiarIP(View v){
 
-        EditText IP=(EditText) findViewById(R.id.txt_Tarjeta);
         String ip=IP.getText().toString().trim();
         String ipA[]=ip.split(".");
         boolean error=false;
