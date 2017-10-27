@@ -1,6 +1,18 @@
 package com.example.christianescobar.myapplication;
 
+import android.widget.TextView;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
 import org.junit.Test;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.junit.Assert.*;
 
@@ -9,13 +21,15 @@ import static org.junit.Assert.*;
  *
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
+
 public class ExampleUnitTest {
     @Test
     public void addition_isCorrect() throws Exception {
         assertEquals(4, 4 + 2);
     }
     @Test
-    public void Conection() throws Exception {
-        assertEquals(4, 2 + 21);
+    public void Json() throws Exception {
+        Json json=new Json("");
+        assertEquals(4, 4 + 2);
     }
 }
