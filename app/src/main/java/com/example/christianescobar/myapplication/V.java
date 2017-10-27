@@ -11,8 +11,8 @@ public abstract class V {
     public static final byte DATE = 3;
     public static final String[] TIPOS={"entero", "decimal", "cadena", "fecha"};
 
-    public static String SERVER="192.168.0.29";
-    public static final String PUERTO="8093";
+    public static String SERVER="192.168.43.85";
+    public static final String PUERTO="8081";
 
     public static int idVehiculo;
     public static String pais;
