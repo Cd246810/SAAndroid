@@ -29,12 +29,16 @@ public class ExampleUnitTest {
     }
     @Test
     public void Json() throws Exception {
+        byte INT = 0;
         Json json=new Json("{\n" +
                 "\"nombre\" : \"\",\n" +
                 "\"no_Tarjeta\" : \"\",\n" +
                 "\"status\" : 1,\n" +
                 "\"descripcion\" : \"Usuario o contraseña incorrectos.\"\n" +
                 "}\n");
+        //System.err.println((int) json.getField("status",INT));
+        //System.err.println("1");
+        //assertEquals((int) json.getField("status",INT), 1);
         assertEquals(4, 2 + 2);
     }
 }
