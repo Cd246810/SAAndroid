@@ -1,5 +1,9 @@
 apply plugin: 'com.android.application'
 
+tasks.matching {it instanceof Test}.all {
+    testLogging.events = ["failed", "passed", "skipped"]
+}
+
 android {
     compileSdkVersion 26
     buildToolsVersion "26.0.2"
@@ -29,7 +33,6 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-
     compile 'com.android.support:appcompat-v7:26.+'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.mcxiaoke.volley:library:1.0.19'
