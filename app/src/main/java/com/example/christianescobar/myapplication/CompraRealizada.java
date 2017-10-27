@@ -20,7 +20,7 @@ public class CompraRealizada extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_compra_realizada);
-
+        setTitle("Detalle del vehiculo");
         RequestQueue queue2 = Volley.newRequestQueue(CompraRealizada.this);
         String url="http://"+V.SERVER+":"+V.PUERTO+"/Importadora/comprar_Vehiculo";
         StringRequest putRequest2 = new StringRequest(Request.Method.POST, url, new Response.Listener<String>(){
