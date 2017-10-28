@@ -61,6 +61,16 @@ public class Json {
         return o;
     }
 
+    public double getDouble(String tag){
+        double retorno=0.0;
+        try{
+            retorno=Double.parseDouble(data.get(tag).toString());
+        }catch(Exception e){
+
+        }
+        return retorno;
+    }
+
     public boolean hasError(){
         return error;
     }
